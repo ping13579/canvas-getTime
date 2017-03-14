@@ -1,0 +1,56 @@
+<!DOCITYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ball canvas</title>
+    <!--<link rel="stylesheet" href="./index.css">-->
+</head>
+<body>
+<div>
+    <canvas id = 'canvas' width="1024" height="708" style="border:1px solid #aaa;display: block;margin: 50px auto;">
+        当前浏览器不支持canvas
+    </canvas>
+</div>
+<script>
+    var ball ={x:512,y:100,r:20,g:7,vx:-3,vy:0,color:"green"};
+
+
+        window.onload = function(){
+            var canvas = document.getElementById('canvas');
+            canvas.width = 1024;
+            canvas.height = 768;
+            var context = canvas.getContext('2d');
+            setInterval(function(){
+                render(context);
+                update();
+            },50);
+        };
+
+
+
+    function update(){
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.vy += ball.g;
+
+        if(ball.y>=768-ball.r){
+            ball.y = 768-ball.r;
+            ball.vy = -ball.vy*0.8;
+        }
+        if(ball.y<=ball.r){
+            ball.y = ball.r;
+            ball.vy = -ball.vy*0.8;
+        }
+    }
+    function render(ctx){
+        ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+        ctx.fillStyle = ball.color;
+        ctx.beginPath();
+        ctx.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCITYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>圆canvas</title>
+    <!--<link rel="stylesheet" href="./index.css">-->
+</head>
+<body>
+<div>
+    <canvas id = 'canvas' width="1024" height="708" style="border:1px solid #aaa;display: block;margin: 50px auto;">
+        当前浏览器不支持canvas
+    </canvas>
+</div>
+<script>
+    window.onload = function(){
+        var canvas = document.getElementById('canvas');
+
+        var context = canvas.getContext('2d');
+
+        context.lineWidth = 5;
+//        context.strokeStyle = 'block';
+
+        context.fillStyle = 'red'
+
+        for(var i=0;i<10;i++){
+            context.beginPath();
+            context.arc(50+i*100,60,40,0,2*Math.PI*(i+1)/10);
+//            context.closePath(); 会自动给当前路径封闭
+            context.fill();
+        }
+
+    };
+
+</script>
+</body>
+</html>
